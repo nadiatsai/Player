@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="player.css">
+</head>
+
+<body>
+
+    <audio src="music/alone.mp3" title="ALONE" id="myMusic" onended="musicStatus()"></audio>
+
+    <div id="controlPanel">
+        <select id="musicList" onchange="changeMusic(0)">
+            <option value="music/cafe.mp3">CAFE</option>
+            <option value="music/cooking.mp3">COOKING</option>
+            <option value="music/lounge.mp3">LOUNGE</option>
+            <option value="music/gardens.mp3">GARDENS</option>
+            <option value="music/Cooking.mp3">烘焙</option>
+            <option value="music/alone.mp3">獨自</option>
+        </select>
+        <hr>
+        <div id="functionButtons">
+            <span onclick="playMusic()">4</span>
+            <!--  <span onclick="pauseMusic()">;</span> -->
+            <span onclick="stopMusic()">&lt;</span>
+            <span onclick="changeMusic(-1)">9</span>
+            <span onclick="changeTime(-5)">7</span>
+            <span onclick="changeTime(5)">8</span>
+            <span onclick="changeMusic(1)">:</span>
+            <span onclick="setMute()">U</span>
+            <span onclick="loopOne()">q</span>
+            <span onclick="setRandom()">s</span>
+            <span onclick="loopAll()">`</span>
+        </div>
+        <hr>
+        <div id="volumeControl">
+            <input type="range" oninput="setVolumeByRangeBar()" value="70">
+            <button onclick="changeVolume(-1)">-</button>
+            <button onclick="changeVolume(1)">+</button>
+            <input type="text" value="100">
+        </div>
+        <hr>
+        <input type="range" id="progressBar" min="0" value="0" oninput="setProgress()">
+        <hr>
+        <div id="information">
+            <div>00:00 / 00:00</div>
+            <div>歡迎使用我的播放器</div>
+            <div>正常</div>
+        </div>
+    </div>
+
+    <script src="player.js"></script>
+
+</body>
+
+</html>
