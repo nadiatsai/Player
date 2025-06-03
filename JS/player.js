@@ -98,6 +98,8 @@
                 setInterval(setMusicDuration, 10);
             }
 
+
+            
             setVolumeByRangeBar(); //初始化音量
 
             //音量調整

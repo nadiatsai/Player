@@ -1,0 +1,11 @@
+
+#musicList {
+    width: 95%;
+    font-size: 12pt;
+    text-align: center;
+    background-color: #c9ebde;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(233, 230, 230, 0.5);
+}
+
