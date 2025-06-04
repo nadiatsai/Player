@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <audio src="music/alone.mp3" title="ALONE" id="myMusic"></audio>
+    <audio src="music/cafe.mp3" title="CAFE" control id="myMusic"></audio>
 
 
     <div class="card" style="width: 24rem;">
@@ -77,18 +77,11 @@
                 <div
                     class="container align-items-center p-3 mb-2 bg-success-subtle text-danger-emphasis border rounded-1">
                     <div class="row">
-                        <div class="progress" role="progressbar" aria-label="Success striped example" aria-valuenow="0"
-                            aria-valuemin="0" aria-valuemax="100">
-
-                            <div class="progress-bar progress-bar-striped bg-success" style="width: 25%"></div>
-                        </div>
+                        <input type="range" id="progressBar" min="0" oninput="setProgress()">
                     </div>
-
                     <div class="row justify-content-around">
                         <div class="row p-0 text-info-emphasis $teal-200 ">
-                            <div id="timeinfo">
-                                00:00/00:00
-                            </div>
+                            <div id="timeinfo">00:00/00:00</div>
                         </div>
 
                         <div class="col-8 p-2">
@@ -119,13 +112,16 @@
                     onclick="changeMusic()"></button>
                 <button class="bi bi-rewind border border-0 rounded-circle btn btn-light"
                     onclick="changeTime()"></button>
-                <button class="bi bi-stop border border-0 rounded-circle btn btn-light" onclick="stopMusic()"></button>
+                <button class="bi bi-stop border border-0 rounded-circle btn btn-light" 
+                    onclick="stopMusic()"></button>
                 <button class="bi bi-caret-right border border-0 rounded-circle btn btn-light"
                     onclick="playMusic()"></button>
                 <button class="bi bi-fast-forward border border-0 rounded-circle btn btn-light"
                     onclick="changeTime()"></button>
                 <button class="bi bi-chevron-bar-right border border-0 rounded-circle btn btn-light"
                     onclick="changeMusic()"></button>
+                <button class="bi bi-pause border border-0 rounded-circle btn btn-light" 
+                    onclick="stopMusic()"></button>
 
             </div>
 
@@ -160,39 +156,13 @@
 
 
     </div>
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
-
-    <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (() => {
-                'use strict'
-
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                const forms = document.querySelectorAll('.needs-validation')
-
-                // Loop over them and prevent submission
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-            })()
-    </script>
-
     <script src="Player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
+        integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

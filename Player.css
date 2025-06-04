@@ -9,3 +9,59 @@
     box-shadow: 0 0 10px rgba(233, 230, 230, 0.5);
 }
 
+
+
+:root {
+    /*用:root變成一個函數，自訂名稱為--vol-thumb- */
+    --vol-thumb-appearance: none;
+    --vol-thumb-width: 40px;
+    --vol-thumb-height: 20px;
+    --vol-thumb-background-color: rgb(36, 8, 176);
+    --vol-thumb-border-radius: 50%;
+    --vol-thumb-border: 3px solid white;
+
+    --progress-appearance: none;
+    --progress-width: 10px;
+    --progress-height: 10px;
+    --progress-background-color: rgb(85, 63, 165);
+    --progress-border-radius: 50%;
+    --progress-transition: 0.5s;
+    --progress-hover-width: 15px;
+    --progress-hover-height: 15px;
+}
+
+#progressBar {
+    appearance: none;
+    width: 600px;
+    height: 15px;
+    background-color: rgb(114, 183, 126);
+    border: 1px solid rgb(230, 233, 218)
+}
+
+#progressBar::-webkit-slider-thumb {
+    appearance: var(--progress-appearance);
+    background-color: var(--progress-background-color);
+    width: var(--progress-width);
+    height: var(--progress-height);
+}
+
+#progressBar::-webkit-slider-thumb:hover {
+    width: var(--progress-hover-width);
+    height: var(--progress-hover-height);
+    border-radius: var(--progress-border-radius);
+    transition: var(--progress-transition);
+}
+
+#progressBar::-moz-range-thumb {
+    appearance: var(--progress-appearance);
+    background-color: var(--progress-background-color);
+    width: var(--progress-width);
+    height: var(--progress-height);
+}
+
+#progressBar::-moz-range-thumb:hover {
+    width: var(--progress-hover-width);
+    height: var(--progress-hover-height);
+    border-radius: var(--progress-border-radius);
+    transition: var(--progress-transition);
+}
