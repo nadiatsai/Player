@@ -4,20 +4,30 @@ var information = document.getElementById("information"); //音樂資訊
 var functionButtons = document.getElementById("functionButtons");
 
 var progressBar = document.getElementById("progressBar");
+
+var volumeRange= document.getElementById("volumeRange"); //range音量調整
+var volumeControl = document.getElementById("volumeControl"); //音量控制
 var timeinfo = document.getElementById("timeinfo"); //音樂時間資訊
 
 
 var playStatus = information //目前曲目
 var musicDuration = timeinfo; //目前音樂時間
 var btnPlay = functionButtons.children[3];
+var txtVolume = volumeControl;
+var rangeVolume = volumeRange;
 
 
 function playMusic() {
+console.log(event.target);
 
-    myMusic.play();
+
+    
     ProgressInitial()
     updateInfo("目前播放" + myMusic.title + "...")
-    functionButtons.children[6].disabled = false;
+    
+    myMusic.play();
+    btnPlay.classList.remove("bi-caret-right"); //移除播放按鈕的樣式
+    btnPlay.classList.add("bi-pause"); //添加暫停按鈕的樣式
     event.target.onclick = pauseMusic; //設定暫停按鈕的事件
 
 }
@@ -26,16 +36,18 @@ function pauseMusic() {
 
     myMusic.pause();
     updateInfo("音樂暫停")
-    event.target.disabled = false; //啟用播放按鈕
-    functionButtons.children[3].disabled = true; //啟用播放按鈕
+
+    btnPlay.classList.remove("bi-pause"); //移除暫停按鈕的樣式
+    btnPlay.classList.add("bi-caret-right"); //添加播放按鈕的樣式
+    btnPlay.disabled = false; //啟用播放按鈕
     event.target.onclick = playMusic; //設定播放按鈕的事件
 }
 
 function stopMusic() {
     myMusic.pause();
     myMusic.currentTime = 0; //重置音樂到開頭
-
-    event.target.onclick = playMusic; //設定播放按鈕的事件
+    btnPlay.classList.remove("bi-pause"); //移除暫停按鈕的樣式
+    btnPlay.classList.add("bi-caret-right"); //添加播放按鈕的樣式
     btnPlay.onclick = playMusic;
     updateInfo("音樂停止")
 }
@@ -61,11 +73,11 @@ function setProgress() {
 function setMusicDuration() {
     musicDuration.innerHTML = getTimeFormat(myMusic.currentTime) + "/" + getTimeFormat(myMusic.duration);
 
-    prograssBar.value = myMusic.currentTim * 10000; //更新進度條的值
+    progressBar.value = myMusic.currentTime * 10000; //更新進度條的值
     //console.log(progressBar.value);
 
     var w = myMusic.currentTime / myMusic.duration * 100; //計算進度條的長度
-    progressBar.style.backgroundImage = "linear-gradient(to right, rgb(85, 63, 165) " + w + "%, rgb(114, 183, 126) " + w + "%)"; //更新進度條的背景
+    progressBar.style.backgroundImage = "linear-gradient(to right, rgb(165, 63, 90) " + w + "%, rgb(114, 183, 126) " + w + "%)"; //更新進度條的背景
 }
 
 function ProgressInitial() {
@@ -74,4 +86,24 @@ function ProgressInitial() {
 }
 
 
+function changeTime(s) {
+                myMusic.currentTime += s;
+}
+
+setVolumeByRangeBar(); //初始化音量
+
+            //音量調整
+function setVolumeByRangeBar() {
+         console.log(event.target.value);
+txtVolume.value = rangeVolume.value;
+myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
+
+                //塗音量條的顏色
+rangeVolume.style.backgroundImage = `linear-gradient(to right, rgb(37, 136, 75) ${rangeVolume.value}%,rgb(211, 236, 189) ${rangeVolume.value}%)`;
+ }
+
+function changeVolume(v) {
+    rangeVolume.value = parseInt(rangeVolume.value) + v;
+    setVolumeByRangeBar();
+}
 
