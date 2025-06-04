@@ -77,16 +77,16 @@
                 <div
                     class="container align-items-center p-3 mb-2 bg-success-subtle text-danger-emphasis border rounded-1">
                     <div class="row">
-                        <input type="range" id="progressBar" min="0" oninput="setProgress()">
+                        <input type="range" class="form-range" id="progressBar" oninput="setProgress()">
                     </div>
                     <div class="row justify-content-around">
-                        <div class="row p-0 text-info-emphasis $teal-200 ">
+                        <div class="row p-0">
                             <div id="timeinfo">00:00/00:00</div>
                         </div>
 
                         <div class="col-8 p-2">
                             <div class="d-flex">
-                                <img src="image/logo.png" class="me-2" alt="05" style="max-height: 32px;">
+                                <img src="image/logo.png" class="me-2 text-center" alt="05" style="max-height: 32px;">
                                 <div id="information">歡迎使用音樂播放器</div>
                             </div>
                         </div>
@@ -111,37 +111,40 @@
                 <button class="bi bi-chevron-bar-left border-0 rounded-circle btn btn-light"
                     onclick="changeMusic()"></button>
                 <button class="bi bi-rewind border border-0 rounded-circle btn btn-light"
-                    onclick="changeTime()"></button>
+                    onclick="changeTime(-5)"></button>
                 <button class="bi bi-stop border border-0 rounded-circle btn btn-light" 
                     onclick="stopMusic()"></button>
                 <button class="bi bi-caret-right border border-0 rounded-circle btn btn-light"
                     onclick="playMusic()"></button>
                 <button class="bi bi-fast-forward border border-0 rounded-circle btn btn-light"
-                    onclick="changeTime()"></button>
+                    onclick="changeTime(5)"></button>
                 <button class="bi bi-chevron-bar-right border border-0 rounded-circle btn btn-light"
                     onclick="changeMusic()"></button>
-                <button class="bi bi-pause border border-0 rounded-circle btn btn-light" 
-                    onclick="stopMusic()"></button>
+                
 
             </div>
 
-            <div class="container text-center p-3 mb-2 bg-warning-subtle text-warning-emphasis">
-                <div class="row align-items-center">
-                    <div class="col-1">
-
-                        <button class="bi bi-volume-mute border border-0 rounded-circle"></button>
+            <div >
+                <div id="volumeControl" class="contain row align-items-centerer text-center p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+                    
+                    <div class="col-1 gap-2">
+                    <button class="bi-volume-mute border border-0 rounded-circle btn btn-light" type="button"
+                            data-bs-toggle="button"></button>
                     </div>
-                    <div class="col-8">
-                        <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75"
-                            aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar w-75 text-bg-warning" style="width: 75%">75%</div>
-                        </div>
-                    </div>
+                    
+                    <div class="col-6">
+                        
+                    <input id="volumeRange" type="range" class="form-range" oninput="setVolumeByRangeBar()" value="70">
+                    </div>     
+                    
                     <div class="col-3">
-                        <button class="bi bi-volume-off border border-0 rounded-circle"></button>
-                        <button class="bi bi-volume-up border border-0 rounded-circle"></button>
+                        <input id="volumeControl" type="text" class="text-nowrap bg-body-secondary border" style="width: 2rem;"value="100" readonly>
+                        <button class="bi bi-volume-off border border-0 rounded-circle" onclick="changeVolume(-2)"></button>
+                        <button class="bi bi-volume-up border border-0 rounded-circle" onclick="changeVolume(2)"></button>
                     </div>
                 </div>
+            </div>
+                
             </div>
         </div>
 
