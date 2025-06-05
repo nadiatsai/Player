@@ -2,10 +2,10 @@
 var myMusic = document.getElementById("myMusic"); //播放音樂
 var information = document.getElementById("information"); //音樂資訊
 var functionButtons = document.getElementById("functionButtons");
-
+var musicList = document.getElementById("musicList");
 var progressBar = document.getElementById("progressBar");
 
-var volumeRange= document.getElementById("volumeRange"); //range音量調整
+var volumeRange = document.getElementById("volumeRange"); //range音量調整
 var volumeControl = document.getElementById("volumeControl"); //音量控制
 var timeinfo = document.getElementById("timeinfo"); //音樂時間資訊
 
@@ -18,13 +18,13 @@ var rangeVolume = volumeRange;
 
 
 function playMusic() {
-console.log(event.target);
+    console.log(event.target);
 
 
-    
+
     ProgressInitial()
     updateInfo("目前播放" + myMusic.title + "...")
-    
+
     myMusic.play();
     btnPlay.classList.remove("bi-caret-right"); //移除播放按鈕的樣式
     btnPlay.classList.add("bi-pause"); //添加暫停按鈕的樣式
@@ -87,23 +87,46 @@ function ProgressInitial() {
 
 
 function changeTime(s) {
-                myMusic.currentTime += s;
+    myMusic.currentTime += s;
 }
 
 setVolumeByRangeBar(); //初始化音量
 
-            //音量調整
+//音量調整
 function setVolumeByRangeBar() {
-         console.log(event.target.value);
-txtVolume.value = rangeVolume.value;
-myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
+    console.log(event.target.value);
+    txtVolume.value = rangeVolume.value;
+    myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
 
-                //塗音量條的顏色
-rangeVolume.style.backgroundImage = `linear-gradient(to right, rgb(37, 136, 75) ${rangeVolume.value}%,rgb(211, 236, 189) ${rangeVolume.value}%)`;
- }
+    //塗音量條的顏色
+    rangeVolume.style.backgroundImage = `linear-gradient(to right, rgb(37, 136, 75) ${rangeVolume.value}%,rgb(211, 236, 189) ${rangeVolume.value}%)`;
+}
 
 function changeVolume(v) {
     rangeVolume.value = parseInt(rangeVolume.value) + v;
     setVolumeByRangeBar();
+}
+
+function setMute() {
+    myMusic.muted = !myMusic.muted;
+    if (myMusic.muted) {
+        rangeVolume.value = 0; //靜音時音量條歸零
+    } else {
+        rangeVolume.value = txtVolume.value; //取消靜音時恢復原來的音量
+    }
+}
+
+
+
+function changeMusic(n) {
+
+    var i = musicList.selectedIndex; //選擇音樂列表中的第n首音樂
+    myMusic.src = musicList.children[i + n].value; //更換音樂來源
+    myMusic.title = musicList.children[i + n].innerText; //更新音樂標題
+    musicList.children[i + n].selected = true; //選擇的音樂索引
+
+    if( btnPlay.classList.contains("bi-pause")) {
+        myMusic.onloadeddata = playMusic; //音樂載入完成後才開始播放
+    }
 }
 
