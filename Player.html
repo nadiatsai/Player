@@ -50,7 +50,7 @@
             </button>
         </div>
 
-        <div class="card-body p-1" id="controlPanel">
+        <div class="card-body p-1">
             <div>
                 <div class="d-flex p-2"></div>
 
@@ -58,7 +58,8 @@
                     <i class="col-1 bi bi-music-note-list fs-3"></i>
                     <div class="col-10 d-grid gap-2 dropup-center dropup">
 
-                        <select id="musicList" onchange="changeMusic(0)" class="form-select text-succes" aria-label="Default select example">
+                        <select id="musicList" onchange="changeMusic(0)" class="form-select text-succes"
+                            aria-label="Default select example">
                             <option value="music/alone.mp3">ALONE</option>
                             <option value="music/gardens.mp3">GARDENS</option>
                             <option value="music/cafe.mp3">CAFE</option>
@@ -71,8 +72,7 @@
 
 
 
-                <div
-                    class="container align-items-center p-3 mb-2 bg-success-subtle text-danger-emphasis border rounded-1">
+                <div class="container align-items-center p-3 mb-2 bg-success-subtle text-danger-emphasis border rounded-1">
                     <div class="row">
                         <input type="range" class="form-range" id="progressBar" oninput="setProgress()">
                     </div>
@@ -81,6 +81,8 @@
                             <div id="timeinfo">00:00/00:00</div>
                         </div>
 
+
+                        
                         <div class="col-8 p-2">
                             <div class="d-flex">
                                 <img src="image/logo.png" class="me-2 text-center" alt="05" style="max-height: 32px;">
@@ -88,18 +90,21 @@
                             </div>
                         </div>
 
+                    
+                    <div class="col-6 d-flex justify-content-center" data-bs-toggle="buttons" >
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" value="one" onclick="loopOne()" autocomplete="off">
+                        <label class="bi bi-repeat-1 border border-0 rounded-circle btn btn-light" for="vbtn-radio1"></label>
+
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" value="all" onclick="loopAll()" autocomplete="off">
+                        <label class="bi bi-arrow-clockwise border border-0 rounded-circle btn btn-light" for="vbtn-radio2"></label>
+
+                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" value="random" onclick="setRandom()" autocomplete="off">
+                        <label class="bi bi-shuffle border border-0 rounded-circle btn btn-light" for="vbtn-radio3"></label>
 
                     </div>
-
-                    <div class="col-md-6 offset-md-3">
-                        <button class="bi bi-repeat-1 border border-0 rounded-circle btn btn-light" onclick="loopOne()" type="button"
-                            data-bs-toggle="button"></button>
-                        <button class="bi bi-arrow-clockwise border border-0 rounded-circle btn btn-light" onclick="loopAll()" type="button"
-                            data-bs-toggle="button"></button>
-                        <button class="bi bi-shuffle border border-0 rounded-circle btn btn-light" onclick="setRandom()" type="button"
-                            data-bs-toggle="button"></button>
                     </div>
 
+                   
                 </div>
             </div>
 
@@ -109,41 +114,45 @@
                     onclick="changeMusic(-1)"></button>
                 <button class="bi bi-rewind border border-0 rounded-circle btn btn-light"
                     onclick="changeTime(-5)"></button>
-                <button class="bi bi-stop border border-0 rounded-circle btn btn-light" 
-                    onclick="stopMusic()"></button>
+                <button class="bi bi-stop border border-0 rounded-circle btn btn-light" onclick="stopMusic()"></button>
                 <button class="bi bi-caret-right border border-0 rounded-circle btn btn-light"
                     onclick="playMusic()"></button>
                 <button class="bi bi-fast-forward border border-0 rounded-circle btn btn-light"
                     onclick="changeTime(5)"></button>
                 <button class="bi bi-chevron-bar-right border border-0 rounded-circle btn btn-light"
                     onclick="changeMusic(1)"></button>
-                
+
 
             </div>
 
-            <div >
-                <div id="volumeControl" class="contain row align-items-centerer text-center p-3 mb-2 bg-warning-subtle text-warning-emphasis">
-                    
+            <div>
+                <div id="volumeControl"
+                    class="contain row align-items-centerer text-center p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+
                     <div class="col-1 gap-2">
-                    <button class="bi-volume-mute border border-0 rounded-circle btn btn-light" onclick="setMute()" type="button"
-                            data-bs-toggle="button"></button>
+                        <button class="bi-volume-mute border border-0 rounded-circle btn btn-light" onclick="setMute()"
+                            type="button" data-bs-toggle="button"></button>
                     </div>
-                    
+
                     <div class="col-6">
-                        
-                    <input id="volumeRange" type="range" class="form-range" oninput="setVolumeByRangeBar()" value="70">
-                    </div>     
-                    
+
+                        <input id="volumeRange" type="range" class="form-range" oninput="setVolumeByRangeBar()"
+                            value="70">
+                    </div>
+
                     <div class="col-3">
-                        <input id="volumeControl" type="text" class="text-nowrap bg-body-secondary border" style="width: 2rem;"value="100" readonly>
-                        <button class="bi bi-volume-off border border-0 rounded-circle" onclick="changeVolume(-2)"></button>
-                        <button class="bi bi-volume-up border border-0 rounded-circle" onclick="changeVolume(2)"></button>
+                        <input id="textVolume" type="text" class="text-nowrap bg-body-secondary border"
+                            style="width: 2rem;" value="100" readonly>
+                        <button class="bi bi-volume-off border border-0 rounded-circle"
+                            onclick="changeVolume(-2)"></button>
+                        <button class="bi bi-volume-up border border-0 rounded-circle"
+                            onclick="changeVolume(2)"></button>
                     </div>
                 </div>
             </div>
-                
-            </div>
+
         </div>
+    </div>
 
 
 

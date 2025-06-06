@@ -8,14 +8,19 @@ var progressBar = document.getElementById("progressBar");
 var volumeRange = document.getElementById("volumeRange"); //range音量調整
 var volumeControl = document.getElementById("volumeControl"); //音量控制
 var timeinfo = document.getElementById("timeinfo"); //音樂時間資訊
-
+var controlPanel = document.getElementById("controlPanel"); //控制面板
+var txtVolume = document.getElementById("textVolume"); //音量文字顯示
 
 var playStatus = information //目前曲目
 var musicDuration = timeinfo; //目前音樂時間
 var btnPlay = functionButtons.children[3];
-var txtVolume = volumeControl;
 var rangeVolume = volumeRange;
 
+myMusic.onended = musicStatus; //音樂播放完畢後，會自動觸發這個事件
+myMusic.onloadeddata = function () {
+    myMusic.play(); //音樂載入完成後才開始播放
+    myMusic.pause(); //音樂載入完成後才開始播放
+}
 
 function playMusic() {
     console.log(event.target);
@@ -78,6 +83,8 @@ function setMusicDuration() {
 
     var w = myMusic.currentTime / myMusic.duration * 100; //計算進度條的長度
     progressBar.style.backgroundImage = "linear-gradient(to right, rgb(165, 63, 90) " + w + "%, rgb(114, 183, 126) " + w + "%)"; //更新進度條的背景
+
+
 }
 
 function ProgressInitial() {
@@ -94,7 +101,7 @@ setVolumeByRangeBar(); //初始化音量
 
 //音量調整
 function setVolumeByRangeBar() {
-    console.log(event.target.value);
+    console.log(rangeVolume.value);
     txtVolume.value = rangeVolume.value;
     myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
 
@@ -116,6 +123,19 @@ function setMute() {
     }
 }
 
+function musicStatus() {
+    if (document.querySelector('input[name="vbtn-radio"]:checked').value == "one") {
+        myMusic.currentTime = 0; //如果是單曲循環，則重置音樂到開頭
+        myMusic.play(); //重新播放音樂
+    } else if (document.querySelector('input[name="vbtn-radio"]:checked').value == "all") {
+        changeMusic(0 - musicList.selectedIndex); //如果是全部循環，則播放下一首音樂
+    } else if (document.querySelector('input[name="vbtn-radio"]:checked').value == "random") {
+        var randomIndex = Math.floor(Math.random() * musicList.options.length); //隨機選擇一首音樂
+        changeMusic(randomIndex - musicList.selectedIndex); //更換音樂來源
+    }
+}
+
+            
 
 
 function changeMusic(n) {
@@ -125,7 +145,7 @@ function changeMusic(n) {
     myMusic.title = musicList.children[i + n].innerText; //更新音樂標題
     musicList.children[i + n].selected = true; //選擇的音樂索引
 
-    if( btnPlay.classList.contains("bi-pause")) {
+    if (btnPlay.classList.contains("bi-pause")) {
         myMusic.onloadeddata = playMusic; //音樂載入完成後才開始播放
     }
 }

@@ -182,3 +182,29 @@
                 /* 從這邊來的console.log(event.target.previousElementSibling) */
                 updateInfo("音樂停止")
             }
+
+            function musicStatus() {
+            if (event.target.value == "one") {
+                changeMusic(0);
+            }
+            else if (event.target.value == "all") {
+            }
+            else if (event.target.value == "random" && musicList.length == musicList.selectedIndex + 1) {
+                changeMusic(0 - musicList.selectedIndex);
+            }
+            else if (musicList.length == musicList.selectedIndex + 1) { //是否為最後一首歌
+                stopMusic();
+            }
+            else {  //不是最後一首歌就播放下一首
+                changeMusic(1);
+            }
+        }
+
+              function loopOne() {
+                event.target.value = event.target.value == "one" ? "one" : "";
+            }
+            function setRandom() {
+                event.target.value = event.target.value == "random" ? "" : "random";
+            }
+            function loopAll() {
+                event.target.value = event.target.value == "all" ? "" : "all";
