@@ -23,11 +23,47 @@
     --progress-appearance: none;
     --progress-width: 15px;
     --progress-height: 15px;
-    --progress-background-color: rgb(85, 63, 165);
+    --progress-background-color: rgb(6, 122, 126);
     --progress-border-radius: 50%;
     --progress-transition: 0.5s;
     --progress-hover-width: 18px;
     --progress-hover-height: 20px;
+}
+
+
+
+#information{
+background-color:none;
+border: 2px solid #ffe69c;
+border-radius: 10rem;
+font-size: 10pt;
+margin: 3px;
+padding: 5px;
+text-align: center;
+display: inline;
+}
+
+
+
+#volumeControl>div.col-1 {
+    display: flex;
+    align-items: center;
+}
+
+
+#textVolume{
+    background-color: rgb(240, 243, 217);
+    border: 0cap;
+    border-radius: 5px;
+    width: 30px;
+    height: 20px;
+    font-size: 10pt;
+}
+
+#groupButtons {
+    font-size: 10pt;
+    text-align: center;
+    display: none;
 }
 
 #progressBar {
@@ -35,7 +71,8 @@
     width: 600px;
     height: 15px;
     background-color: rgb(87, 186, 103);
-    border: 1px solid rgb(230, 233, 218)
+    border: 1px solid rgb(222, 219, 52);
+    border-radius: 5px;
 }
 
 #progressBar::-webkit-slider-thumb {

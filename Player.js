@@ -10,22 +10,47 @@ var volumeControl = document.getElementById("volumeControl"); //音量控制
 var timeinfo = document.getElementById("timeinfo"); //音樂時間資訊
 var controlPanel = document.getElementById("controlPanel"); //控制面板
 var txtVolume = document.getElementById("textVolume"); //音量文字顯示
+var groupButtons = document.getElementById("groupButtons"); //循環/隨機按鈕組
 
 var playStatus = information //目前曲目
 var musicDuration = timeinfo; //目前音樂時間
 var btnPlay = functionButtons.children[3];
 var rangeVolume = volumeRange;
+var infoStatus = groupButtons; //目前循環/隨機狀態
+
+function musicStatus() {
+    if (infoStatus.innerText == "one") {
+        changeMusic(0); //單曲循環，播放當前音樂
+    } else if (infoStatus.innerText == "random") {
+        var i = Math.floor(Math.random() * musicList.length); //隨機選擇一首音樂
+        changeMusic(i - musicList.selectedIndex); //播放隨機音樂
+    } else if (infoStatus.innerText == "all" && musicList.length == musicList.selectedIndex + 1) {
+        changeMusic(0 - musicList.selectedIndex); //全曲循環，播放第一首音樂
+    } else if (musicList.length == musicList.selectedIndex + 1) { //是否為最後一首歌
+        stopMusic(); //停止音樂
+    } else {  //不是最後一首歌就播放下一首
+        changeMusic(1); //播放下一首音樂
+    }
+}
+
+function loopOne() {
+    infoStatus.innerHTML = infoStatus.innerHTML == "one" ? "normal" : "one";
+}
+function setRandom() {
+    infoStatus.innerHTML = infoStatus.innerHTML == "random" ? "normal" : "random";
+}
+function loopAll() {
+    infoStatus.innerHTML = infoStatus.innerHTML == "all" ? "normal" : "all";
+}
 
 myMusic.onended = musicStatus; //音樂播放完畢後，會自動觸發這個事件
 myMusic.onloadeddata = function () {
     myMusic.play(); //音樂載入完成後才開始播放
-    myMusic.pause(); //音樂載入完成後才開始播放
+    myMusic.pause(); //暫停音樂，等待用戶點擊播放按鈕
 }
 
 function playMusic() {
     console.log(event.target);
-
-
 
     ProgressInitial()
     updateInfo("目前播放" + myMusic.title + "...")
@@ -82,7 +107,7 @@ function setMusicDuration() {
     //console.log(progressBar.value);
 
     var w = myMusic.currentTime / myMusic.duration * 100; //計算進度條的長度
-    progressBar.style.backgroundImage = "linear-gradient(to right, rgb(165, 63, 90) " + w + "%, rgb(114, 183, 126) " + w + "%)"; //更新進度條的背景
+    progressBar.style.backgroundImage = "linear-gradient(to right, rgb(222, 219, 52) " + w + "%, rgb(102, 175, 114) " + w + "%)"; //更新進度條的背景
 
 
 }
@@ -104,9 +129,6 @@ function setVolumeByRangeBar() {
     console.log(rangeVolume.value);
     txtVolume.value = rangeVolume.value;
     myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
-
-    //塗音量條的顏色
-    rangeVolume.style.backgroundImage = `linear-gradient(to right, rgb(37, 136, 75) ${rangeVolume.value}%,rgb(211, 236, 189) ${rangeVolume.value}%)`;
 }
 
 function changeVolume(v) {
@@ -123,19 +145,7 @@ function setMute() {
     }
 }
 
-function musicStatus() {
-    if (document.querySelector('input[name="vbtn-radio"]:checked').value == "one") {
-        myMusic.currentTime = 0; //如果是單曲循環，則重置音樂到開頭
-        myMusic.play(); //重新播放音樂
-    } else if (document.querySelector('input[name="vbtn-radio"]:checked').value == "all") {
-        changeMusic(0 - musicList.selectedIndex); //如果是全部循環，則播放下一首音樂
-    } else if (document.querySelector('input[name="vbtn-radio"]:checked').value == "random") {
-        var randomIndex = Math.floor(Math.random() * musicList.options.length); //隨機選擇一首音樂
-        changeMusic(randomIndex - musicList.selectedIndex); //更換音樂來源
-    }
-}
 
-            
 
 
 function changeMusic(n) {
@@ -145,7 +155,7 @@ function changeMusic(n) {
     myMusic.title = musicList.children[i + n].innerText; //更新音樂標題
     musicList.children[i + n].selected = true; //選擇的音樂索引
 
-    if (btnPlay.classList.contains("bi-pause")) {
+    if (btnPlay.classList.contains("bi-pause") == true) { //如果當前是暫停狀態
         myMusic.onloadeddata = playMusic; //音樂載入完成後才開始播放
     }
 }

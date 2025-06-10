@@ -17,7 +17,7 @@
     <audio src="music/cafe.mp3" title="CAFE" control id="myMusic"></audio>
 
 
-    <div class="card" style="width: 24rem;">
+    <div class="card" style="width: 24rem; margin: 0 auto"> 
         <div id="carouselExampleIndicators" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -52,11 +52,11 @@
 
         <div class="card-body p-1">
             <div>
-                <div class="d-flex p-2"></div>
+                
 
-                <div class="row bg-success p-2 text-white bg-opacity-75">
-                    <i class="col-1 bi bi-music-note-list fs-3"></i>
-                    <div class="col-10 d-grid gap-2 dropup-center dropup">
+                <div class="d-flex bg-success p-2 text-white bg-opacity-75">
+                    <i class="col-2 px-3 bi-music-note-list fs-3"></i>
+                    <div class="col-10 gap-2 dropup-center dropup">
 
                         <select id="musicList" onchange="changeMusic(0)" class="form-select text-succes"
                             aria-label="Default select example">
@@ -72,39 +72,51 @@
 
 
 
-                <div class="container align-items-center p-3 mb-2 bg-success-subtle text-danger-emphasis border rounded-1">
+                <div
+                    class="container align-items-center p-3 mb-2 bg-success-subtle text-danger-emphasis border rounded-1">
                     <div class="row">
                         <input type="range" class="form-range" id="progressBar" oninput="setProgress()">
                     </div>
                     <div class="row justify-content-around">
                         <div class="row p-0">
-                            <div id="timeinfo">00:00/00:00</div>
+                            <div id="timeinfo" class="text-end">00:00/00:00</div>
                         </div>
 
 
-                        
+
+
                         <div class="col-8 p-2">
                             <div class="d-flex">
                                 <img src="image/logo.png" class="me-2 text-center" alt="05" style="max-height: 32px;">
-                                <div id="information">歡迎使用音樂播放器</div>
+                                <div id="information"> 歡迎使用音樂播放器 </div>
                             </div>
+                            <div id="groupButtons">normal</div>
                         </div>
 
-                    
-                    <div class="col-6 d-flex justify-content-center" data-bs-toggle="buttons" >
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" value="one" onclick="loopOne()" autocomplete="off">
-                        <label class="bi bi-repeat-1 border border-0 rounded-circle btn btn-light" for="vbtn-radio1"></label>
 
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" value="all" onclick="loopAll()" autocomplete="off">
-                        <label class="bi bi-arrow-clockwise border border-0 rounded-circle btn btn-light" for="vbtn-radio2"></label>
+                        <div class="col-6 d-flex justify-content-center" data-bs-toggle="buttons">
 
-                        <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" value="random" onclick="setRandom()" autocomplete="off">
-                        <label class="bi bi-shuffle border border-0 rounded-circle btn btn-light" for="vbtn-radio3"></label>
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" value="one"
+                                onclick="loopOne()" autocomplete="off">
+                            <label class="bi bi-repeat-1 border border-0 rounded-circle btn btn-light"
+                                for="vbtn-radio1"></label>
+
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" value="all"
+                                onclick="loopAll()" autocomplete="off">
+                            <label class="bi bi-arrow-clockwise border border-0 rounded-circle btn btn-light"
+                                for="vbtn-radio2"></label>
+
+                            <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" value="random"
+                                onclick="setRandom()" autocomplete="off">
+                            <label class="bi bi-shuffle border border-0 rounded-circle btn btn-light"
+                                for="vbtn-radio3"></label>
+                        </div>
+
+
 
                     </div>
-                    </div>
 
-                   
+
                 </div>
             </div>
 
@@ -125,24 +137,23 @@
 
             </div>
 
-            <div>
+            <div class="d-block">
                 <div id="volumeControl"
-                    class="contain row align-items-centerer text-center p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+                    class="row p-2 bg-warning-subtle text-warning-emphasis">
 
-                    <div class="col-1 gap-2">
-                        <button class="bi-volume-mute border border-0 rounded-circle btn btn-light" onclick="setMute()"
+                    <div class="col-2 gap-2">
+                        <button class="bi-volume-mute border-0 rounded-circle btn btn-light" onclick="setMute()"
                             type="button" data-bs-toggle="button"></button>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-6 pg-1 p-2">
 
                         <input id="volumeRange" type="range" class="form-range" oninput="setVolumeByRangeBar()"
-                            value="70">
+                            value="60">
                     </div>
 
-                    <div class="col-3">
-                        <input id="textVolume" type="text" class="text-nowrap bg-body-secondary border"
-                            style="width: 2rem;" value="100" readonly>
+                    <div class="col-4 p-2">
+                        <input id="textVolume" type="text" value="100" readonly>
                         <button class="bi bi-volume-off border border-0 rounded-circle"
                             onclick="changeVolume(-2)"></button>
                         <button class="bi bi-volume-up border border-0 rounded-circle"
@@ -157,7 +168,7 @@
 
 
 
-    </div>
+    
 
 
 

@@ -208,3 +208,18 @@
             }
             function loopAll() {
                 event.target.value = event.target.value == "all" ? "" : "all";
+
+                function musicStatus() {
+    if (document.querySelector('input[name="vbtn-radio"]:checked').value == "one") {
+        myMusic.currentTime = 0; //如果是單曲循環，則重置音樂到開頭
+        myMusic.play(); //重新播放音樂
+    } else if (document.querySelector('input[name="vbtn-radio"]:checked').value == "all") {
+        changeMusic(0 - musicList.selectedIndex); //如果是全部循環，則播放下一首音樂
+    } else if (document.querySelector('input[name="vbtn-radio"]:checked').value == "random") {
+        var randomIndex = Math.floor(Math.random() * musicList.options.length); //隨機選擇一首音樂
+        changeMusic(randomIndex - musicList.selectedIndex); //更換音樂來源
+    }
+}
+
+
+
