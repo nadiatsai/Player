@@ -129,6 +129,9 @@ function setVolumeByRangeBar() {
     console.log(rangeVolume.value);
     txtVolume.value = rangeVolume.value;
     myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
+    var v=txtVolume.value / 100; //音量值
+    volumeRange.style.backgroundImage = "linear-gradient(to right, rgb(222, 219, 52) " + v * 100 + "%, rgb(221, 181, 36) " + v * 100 + "%)"; //更新音量條的背景
+
 }
 
 function changeVolume(v) {

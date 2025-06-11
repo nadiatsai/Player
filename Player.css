@@ -1,4 +1,3 @@
-
 #musicList {
     width: 95%;
     font-size: 12pt;
@@ -9,14 +8,34 @@
     box-shadow: 0 0 10px rgba(233, 230, 230, 0.5);
 }
 
+.rotating-image {
+    animation: rotate 5s linear infinite;
+    /* 設定動畫效果 */
+}
 
+.rotating-image:hover {
+    animation-play-state: paused;
+     /*當滑鼠懸停時暫停動畫*/ 
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+        /* 起始位置，不旋轉 */
+    }
+    to {
+        transform: rotate(360deg);
+        /* 最終位置，旋轉一圈 */
+    }
+
+}
 
 :root {
     /*用:root變成一個函數，自訂名稱為--vol-thumb- */
     --vol-thumb-appearance: none;
     --vol-thumb-width: 40px;
     --vol-thumb-height: 20px;
-    --vol-thumb-background-color: rgb(36, 8, 176);
+    --vol-thumb-background-color: rgb(180, 227, 23);
     --vol-thumb-border-radius: 50%;
     --vol-thumb-border: 3px solid white;
 
@@ -32,16 +51,36 @@
 
 
 
-#information{
-background-color:none;
-border: 2px solid #ffe69c;
-border-radius: 10rem;
-font-size: 10pt;
-margin: 3px;
-padding: 5px;
-text-align: center;
-display: inline;
+#information {
+    background-color: none;
+    border-radius: 5rem;
+    text-shadow: #03291a;
+    font-size: 10pt;
+    color: rgb(6, 145, 32);
+    margin-left: 10px;
+    padding: 5px;
+    text-align: center;
+    display: inline;
+  
 }
+
+.neon {
+  
+  color: white;
+  font-size: 60px;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 20px #fff, 0 0 100px #fff, 0 0 20px #fff;
+  }
+  50% {
+    text-shadow: 0 0 50px #fff, 0 0 150px #fff, 0 0 50px #fff;
+    color:lightseagreen
+  }
+}
+
 
 
 
@@ -51,19 +90,39 @@ display: inline;
 }
 
 
-#textVolume{
-    background-color: rgb(240, 243, 217);
+#textVolume {
+    background-color: rgb(229, 235, 236);
     border: 0cap;
     border-radius: 5px;
     width: 30px;
-    height: 20px;
+    height: 15px;
     font-size: 10pt;
+    color: rgb(246, 130, 22);
+    margin-top: 10px;
+    text-align: center;
 }
 
 #groupButtons {
     font-size: 10pt;
     text-align: center;
     display: none;
+}
+
+#volumeRange {
+    appearance: none;
+    width: 170px;
+    height: 15px;
+    margin-top: 10px;
+    background-color: rgb(246, 130, 22);
+    border: solid rgb(229, 235, 236);
+    border-radius: 5px;
+    --progress-width: 8px;
+    --progress-height: 15px;
+    --progress-background-color: rgb(216, 150, 117);
+    --progress-border-radius: 40%;
+    --progress-transition: 0.5s;
+    --progress-hover-width: 15px;
+    --progress-hover-height: 15px;
 }
 
 #progressBar {
@@ -97,6 +156,34 @@ display: inline;
 }
 
 #progressBar::-moz-range-thumb:hover {
+    width: var(--progress-hover-width);
+    height: var(--progress-hover-height);
+    border-radius: var(--progress-border-radius);
+    transition: var(--progress-transition);
+}
+
+#volumeRange::-webkit-slider-thumb {
+    appearance: var(--progress-appearance);
+    background-color: var(--progress-background-color);
+    width: var(--progress-width);
+    height: var(--progress-height);
+}
+
+#volumeRange::-webkit-slider-thumb:hover {
+    width: var(--progress-hover-width);
+    height: var(--progress-hover-height);
+    border-radius: var(--progress-border-radius);
+    transition: var(--progress-transition);
+}
+
+#volumeRange::-moz-range-thumb {
+    appearance: var(--progress-appearance);
+    background-color: var(--progress-background-color);
+    width: var(--progress-width);
+    height: var(--progress-height);
+}
+
+#volumeRange::-moz-range-thumb:hover {
     width: var(--progress-hover-width);
     height: var(--progress-hover-height);
     border-radius: var(--progress-border-radius);
