@@ -108,6 +108,11 @@
     display: none;
 }
 
+#vbtn-radio4{
+    width: 5px;
+    height: 5px;
+}
+
 #volumeRange {
     appearance: none;
     width: 170px;

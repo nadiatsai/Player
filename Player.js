@@ -19,6 +19,7 @@ var rangeVolume = volumeRange;
 var infoStatus = groupButtons; //目前循環/隨機狀態
 
 function musicStatus() {
+
     if (infoStatus.innerText == "one") {
         changeMusic(0); //單曲循環，播放當前音樂
     } else if (infoStatus.innerText == "random") {
@@ -26,8 +27,10 @@ function musicStatus() {
         changeMusic(i - musicList.selectedIndex); //播放隨機音樂
     } else if (infoStatus.innerText == "all" && musicList.length == musicList.selectedIndex + 1) {
         changeMusic(0 - musicList.selectedIndex); //全曲循環，播放第一首音樂
-    } else if (musicList.length == musicList.selectedIndex + 1) { //是否為最後一首歌
-        stopMusic(); //停止音樂
+    } else if (infoStatus.innerText == "cancel" && musicList.length == musicList.selectedIndex + 1) { //是否有選x且為最後一首歌
+        pauseMusic(); //停止音樂
+    } else if (musicList.length == musicList.selectedIndex + 1) {
+        pauseMusic(); //停止音樂
     } else {  //不是最後一首歌就播放下一首
         changeMusic(1); //播放下一首音樂
     }
@@ -41,6 +44,10 @@ function setRandom() {
 }
 function loopAll() {
     infoStatus.innerHTML = infoStatus.innerHTML == "all" ? "normal" : "all";
+}
+
+function cancel() {
+    infoStatus.innerHTML = infoStatus.innerHTML == "cancel" ? "normal" : "cancel";
 }
 
 myMusic.onended = musicStatus; //音樂播放完畢後，會自動觸發這個事件
@@ -129,7 +136,7 @@ function setVolumeByRangeBar() {
     console.log(rangeVolume.value);
     txtVolume.value = rangeVolume.value;
     myMusic.volume = txtVolume.value / 100; //真正寫入音量屬性值
-    var v=txtVolume.value / 100; //音量值
+    var v = txtVolume.value / 100; //音量值
     volumeRange.style.backgroundImage = "linear-gradient(to right, rgb(222, 219, 52) " + v * 100 + "%, rgb(221, 181, 36) " + v * 100 + "%)"; //更新音量條的背景
 
 }
@@ -143,6 +150,7 @@ function setMute() {
     myMusic.muted = !myMusic.muted;
     if (myMusic.muted) {
         rangeVolume.value = 0; //靜音時音量條歸零
+        volumeRange.style.backgroundImage = "linear-gradient(to right, rgb(222, 219, 52) 0%, rgb(221, 181, 36) 100%)"; //更新音量條的背景
     } else {
         rangeVolume.value = txtVolume.value; //取消靜音時恢復原來的音量
     }
